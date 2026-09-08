@@ -3,6 +3,7 @@ import { Check, Sparkles, X } from "lucide-react";
 import riya from "@/assets/riya.jpg";
 import kabir from "@/assets/kabir.jpg";
 import ananya from "@/assets/ananya.jpg";
+import aarav from "@/assets/aarav.jpg";
 import { Chip, Section } from "./shared";
 
 const deck = [
@@ -30,6 +31,30 @@ const deck = [
     tags: ["Flutter", "Maps", "Design"],
     person: { img: ananya, name: "Ananya Sen", role: "Full-Stack · VIT Vellore", count: "4 in" },
   },
+  {
+    name: "Design System Kit",
+    kind: "OPEN SOURCE",
+    ago: "3d ago",
+    body: "A reusable UI kit for student builders. Components, tokens, and docs.",
+    tags: ["React", "Storybook", "Figma"],
+    person: { img: aarav, name: "Aarav Patel", role: "Android Developer · DTU", count: "5 in" },
+  },
+  {
+    name: "Campus Marketplace",
+    kind: "SIDE PROJECT",
+    ago: "12h ago",
+    body: "Buy, sell, and rent textbooks, gadgets, and cycles inside your campus.",
+    tags: ["Flutter", "Node.js", "Payments"],
+    person: { img: ananya, name: "Ananya Sen", role: "Full-Stack · VIT Vellore", count: "2 in" },
+  },
+  {
+    name: "Mental Health Buddy",
+    kind: "ACTIVE PROJECT",
+    ago: "4d ago",
+    body: "A safe peer-support space with mood tracking and guided journaling.",
+    tags: ["iOS", "Python", "UI Design"],
+    person: { img: riya, name: "Riya Sharma", role: "Product Lead · Design Guild", count: "3 in" },
+  },
 ];
 
 const bullets = [
@@ -40,6 +65,48 @@ const bullets = [
 
 type Fly = "left" | "right" | null;
 const SWIPE_PX = 90;
+
+type CardData = (typeof deck)[number];
+
+function CardContent({ card }: { card: CardData }) {
+  return (
+    <>
+      <div className="flex items-center justify-between">
+        <Chip tone="violet">
+          <Sparkles className="h-3 w-3" /> {card.kind}
+        </Chip>
+        <span className="font-mono text-[0.65rem] text-muted-foreground">{card.ago}</span>
+      </div>
+      <h3 className="mt-4 text-2xl font-bold text-foreground">{card.name}</h3>
+      <p className="mt-2 text-sm text-muted-foreground">{card.body}</p>
+      <p className="eyebrow mt-5 text-muted-foreground">Looking for</p>
+      <div className="mt-2 flex flex-wrap gap-1.5">
+        {card.tags.map((t, ti) => (
+          <Chip key={t} tone={(["brand", "amber", "rose"] as const)[ti % 3]!}>
+            {t}
+          </Chip>
+        ))}
+      </div>
+
+      <div className="mt-6 flex items-center gap-3 border-t border-border pt-5">
+        <img
+          src={card.person.img}
+          alt={card.person.name}
+          width={512}
+          height={512}
+          loading="lazy"
+          draggable={false}
+          className="h-11 w-11 rounded-full object-cover"
+        />
+        <div className="flex-1">
+          <p className="font-semibold text-foreground">{card.person.name}</p>
+          <p className="text-xs text-muted-foreground">{card.person.role}</p>
+        </div>
+        <span className="font-mono text-xs text-muted-foreground">{card.person.count}</span>
+      </div>
+    </>
+  );
+}
 
 export function Swipe() {
   const [i, setI] = useState(0);
@@ -99,7 +166,6 @@ export function Swipe() {
   const exitX = fly === "right" ? 420 : fly === "left" ? -420 : 0;
   const tx = fly ? exitX : dragX;
   const rot = tx / 18;
-  const transitioning = fly || (!dragging.current && dragX === 0);
 
   const likeOpacity = fly === "right" ? 1 : dragX > 0 ? Math.min(dragX / SWIPE_PX, 1) : 0;
   const nopeOpacity = fly === "left" ? 1 : dragX < 0 ? Math.min(-dragX / SWIPE_PX, 1) : 0;
@@ -131,70 +197,49 @@ export function Swipe() {
         </div>
 
         <div className="relative mx-auto w-full max-w-sm">
-          <div className="absolute inset-x-6 -top-4 rounded-3xl border border-border bg-surface-2 py-3 text-center text-sm font-semibold text-muted-foreground">
-            {next.name}
-          </div>
-          <div
-            ref={cardRef}
-            role="button"
-            aria-label={`${card.name} — swipe right if interested, left to pass`}
-            onPointerDown={onPointerDown}
-            onPointerMove={onPointerMove}
-            onPointerUp={onPointerUp}
-            onPointerCancel={onPointerUp}
-            style={{
-              transform: `translateX(${tx}px) rotate(${rot}deg)`,
-              transition: dragging.current ? "none" : "transform 0.32s ease",
-              touchAction: "pan-y",
-            }}
-            className="relative cursor-grab select-none rounded-3xl border border-border bg-card p-6 shadow-float active:cursor-grabbing"
-          >
-            {/* Swipe stamps */}
-            <span
-              style={{ opacity: likeOpacity }}
-              className="pointer-events-none absolute left-5 top-5 z-10 -rotate-12 rounded-lg border-4 border-[oklch(0.55_0.17_155)] px-3 py-1 text-lg font-black tracking-widest text-[oklch(0.55_0.17_155)]"
+          <div className="relative h-[26rem]">
+            {/* Next card stacked behind */}
+            <div
+              key={next.name}
+              className="absolute inset-0 rounded-3xl border border-border bg-card p-6 shadow-card transition-all duration-300"
+              style={{ transform: "scale(0.93) translateY(-10px)", opacity: 0.55, zIndex: 0 }}
             >
-              MATCH
-            </span>
-            <span
-              style={{ opacity: nopeOpacity }}
-              className="pointer-events-none absolute right-5 top-5 z-10 rotate-12 rounded-lg border-4 border-[oklch(0.6_0.2_20)] px-3 py-1 text-lg font-black tracking-widest text-[oklch(0.6_0.2_20)]"
-            >
-              PASS
-            </span>
-
-            <div className="flex items-center justify-between">
-              <Chip tone="violet">
-                <Sparkles className="h-3 w-3" /> {card.kind}
-              </Chip>
-              <span className="font-mono text-[0.65rem] text-muted-foreground">{card.ago}</span>
-            </div>
-            <h3 className="mt-4 text-2xl font-bold text-foreground">{card.name}</h3>
-            <p className="mt-2 text-sm text-muted-foreground">{card.body}</p>
-            <p className="eyebrow mt-5 text-muted-foreground">Looking for</p>
-            <div className="mt-2 flex flex-wrap gap-1.5">
-              {card.tags.map((t, ti) => (
-                <Chip key={t} tone={(["brand", "amber", "rose"] as const)[ti % 3]!}>
-                  {t}
-                </Chip>
-              ))}
+              <CardContent card={next} />
             </div>
 
-            <div className="mt-6 flex items-center gap-3 border-t border-border pt-5">
-              <img
-                src={card.person.img}
-                alt={card.person.name}
-                width={512}
-                height={512}
-                loading="lazy"
-                draggable={false}
-                className="h-11 w-11 rounded-full object-cover"
-              />
-              <div className="flex-1">
-                <p className="font-semibold text-foreground">{card.person.name}</p>
-                <p className="text-xs text-muted-foreground">{card.person.role}</p>
-              </div>
-              <span className="font-mono text-xs text-muted-foreground">{card.person.count}</span>
+            {/* Current card */}
+            <div
+              ref={cardRef}
+              key={card.name}
+              role="button"
+              aria-label={`${card.name} — swipe right if interested, left to pass`}
+              onPointerDown={onPointerDown}
+              onPointerMove={onPointerMove}
+              onPointerUp={onPointerUp}
+              onPointerCancel={onPointerUp}
+              style={{
+                transform: `translateX(${tx}px) rotate(${rot}deg)`,
+                transition: dragging.current ? "none" : "transform 0.32s ease",
+                touchAction: "pan-y",
+                zIndex: 10,
+              }}
+              className="absolute inset-0 cursor-grab select-none rounded-3xl border border-border bg-card p-6 shadow-float active:cursor-grabbing"
+            >
+              {/* Swipe stamps */}
+              <span
+                style={{ opacity: likeOpacity }}
+                className="pointer-events-none absolute left-5 top-5 z-10 -rotate-12 rounded-lg border-4 border-[oklch(0.55_0.17_155)] px-3 py-1 text-lg font-black tracking-widest text-[oklch(0.55_0.17_155)]"
+              >
+                MATCH
+              </span>
+              <span
+                style={{ opacity: nopeOpacity }}
+                className="pointer-events-none absolute right-5 top-5 z-10 rotate-12 rounded-lg border-4 border-[oklch(0.6_0.2_20)] px-3 py-1 text-lg font-black tracking-widest text-[oklch(0.6_0.2_20)]"
+              >
+                PASS
+              </span>
+
+              <CardContent card={card} />
             </div>
           </div>
 
