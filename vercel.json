@@ -1,6 +1,11 @@
 {
   "redirects": [
     {
+      "source": "/post/:id",
+      "destination": "https://play.google.com/store/apps/details?id=com.iota.campusX",
+      "permanent": false
+    },
+    {
       "source": "/course/:id",
       "destination": "https://play.google.com/store/apps/details?id=com.iota.campusX",
       "permanent": false
@@ -13,7 +18,7 @@
   ],
   "rewrites": [
     {
-      "source": "/((?!course|session).*)",
+      "source": "/((?!post|course|session).*)",
       "destination": "/index.html"
     }
   ]
