@@ -6,7 +6,7 @@ import { Chip } from "./shared";
 function GooglePlayButton({ className = "" }: { className?: string }) {
   return (
     <a
-      href="https://play.google.com/store/search?q=finder%20connec&c=apps"
+      href="https://play.google.com/store/apps/details?id=com.iota.campusX"
       target="_blank"
       rel="noreferrer"
       className={`inline-flex items-center gap-3 rounded-2xl bg-ink px-5 py-3 text-ink-foreground transition-transform hover:-translate-y-0.5 ${className}`}
