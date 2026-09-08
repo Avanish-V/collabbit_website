@@ -40,8 +40,8 @@ const bullets = [
 
 export function Swipe() {
   const [i, setI] = useState(0);
-  const card = deck[i % deck.length];
-  const next = deck[(i + 1) % deck.length];
+  const card = deck[i % deck.length]!;
+  const next = deck[(i + 1) % deck.length]!;
 
   return (
     <Section
@@ -85,7 +85,7 @@ export function Swipe() {
             <p className="eyebrow mt-5 text-muted-foreground">Looking for</p>
             <div className="mt-2 flex flex-wrap gap-1.5">
               {card.tags.map((t, ti) => (
-                <Chip key={t} tone={(["brand", "amber", "rose"] as const)[ti % 3]}>
+                <Chip key={t} tone={(["brand", "amber", "rose"] as const)[ti % 3]!}>
                   {t}
                 </Chip>
               ))}
