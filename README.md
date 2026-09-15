@@ -2,4 +2,5 @@
 
 https://collabbit.in i need exact this landing page only ui not backend in nextjs.
 
-ASSET redirct
+ASSET
+PUSH
