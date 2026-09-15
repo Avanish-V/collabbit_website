@@ -24,12 +24,15 @@ function GooglePlayButton({ className = "" }: { className?: string }) {
 
 export function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden">
+    <section
+      id="top"
+      className="relative flex min-h-[calc(100vh-4rem)] flex-col justify-between overflow-hidden"
+    >
       <div className="grid-bg pointer-events-none absolute inset-0 opacity-70" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(90%_60%_at_75%_10%,oklch(0.93_0.05_255/60%),transparent_70%)]" />
 
-      <div className="relative mx-auto grid w-full max-w-6xl gap-16 px-5 pb-24 pt-16 md:px-8 md:pb-28 md:pt-24 lg:grid-cols-[1.05fr_1fr] lg:items-center">
-        <div>
+      <div className="relative mx-auto my-auto grid w-full max-w-7xl items-center gap-12 px-6 py-12 md:px-12 md:py-16 lg:grid-cols-[1.1fr_1fr] 2xl:max-w-[1536px] 2xl:px-20">
+        <div className="reveal">
           <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-4 py-2 font-mono text-[0.65rem] uppercase tracking-[0.18em] text-muted-foreground">
             <span className="h-1.5 w-1.5 rounded-full bg-grass" />
             12,400+ students building this week
@@ -72,7 +75,7 @@ export function Hero() {
         </div>
 
         {/* Floating card collage */}
-        <div className="relative min-h-[520px] lg:min-h-[560px]">
+        <div className="reveal-scale delay-200 relative min-h-[520px] lg:min-h-[580px]">
           <div className="animate-float absolute left-0 top-0 w-[19rem] max-w-full rounded-3xl border border-border bg-card p-5 shadow-float">
             <div className="absolute -right-6 -top-4 rotate-6 rounded-full bg-amber px-3 py-1.5 font-mono text-[0.6rem] font-semibold uppercase tracking-[0.16em] text-ink">
               <span className="inline-flex items-center gap-1.5">
@@ -183,6 +186,19 @@ export function Hero() {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Scroll to explore cue */}
+      <div className="reveal-fade delay-500 hidden items-center justify-center pb-6 md:flex">
+        <a
+          href="#discover"
+          className="inline-flex flex-col items-center gap-1.5 text-xs font-mono uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground"
+        >
+          <span>Scroll down</span>
+          <span className="flex h-7 w-4 justify-center rounded-full border border-border pt-1">
+            <span className="h-1.5 w-1 animate-bounce rounded-full bg-brand" />
+          </span>
+        </a>
       </div>
     </section>
   );

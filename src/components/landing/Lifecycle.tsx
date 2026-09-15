@@ -35,8 +35,8 @@ export function Lifecycle() {
     >
       <div className="relative mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         <div className="pointer-events-none absolute left-0 right-0 top-6 hidden h-px bg-border lg:block" />
-        {steps.map((s) => (
-          <div key={s.n} className="relative">
+        {steps.map((s, i) => (
+          <div key={s.n} className={`reveal delay-${(i + 1) * 100} relative`}>
             <span className="relative z-10 inline-flex h-12 w-12 items-center justify-center rounded-full border border-border bg-card font-mono text-sm font-semibold text-brand shadow-card">
               {s.n}
             </span>

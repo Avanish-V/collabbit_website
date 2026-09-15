@@ -50,10 +50,10 @@ export function Builders() {
       className="bg-surface"
     >
       <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        {people.map((p) => (
+        {people.map((p, i) => (
           <div
             key={p.name}
-            className="flex flex-col rounded-3xl border border-border bg-card p-6 shadow-card transition-transform hover:-translate-y-1"
+            className={`reveal delay-${(i + 1) * 100} flex flex-col rounded-3xl border border-border bg-card p-6 shadow-card transition-all hover:-translate-y-1.5`}
           >
             <img
               src={p.img}

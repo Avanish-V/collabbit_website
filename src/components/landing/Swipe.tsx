@@ -180,7 +180,7 @@ export function Swipe() {
       className="bg-background"
     >
       <div className="mt-12 grid gap-14 lg:grid-cols-2 lg:items-center">
-        <div>
+        <div className="reveal-left">
           <ul className="space-y-4">
             {bullets.map((b) => (
               <li key={b} className="flex items-start gap-3">
@@ -196,7 +196,7 @@ export function Swipe() {
           </p>
         </div>
 
-        <div className="relative mx-auto w-full max-w-sm">
+        <div className="reveal-right delay-200 relative mx-auto w-full max-w-sm">
           <div className="relative h-[26rem]">
             {/* Next card stacked behind */}
             <div

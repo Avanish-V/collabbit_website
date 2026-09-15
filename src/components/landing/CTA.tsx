@@ -3,9 +3,12 @@ import { GooglePlayButton } from "./Hero";
 
 export function CTA() {
   return (
-    <section id="join" className="relative overflow-hidden border-t border-border/70 bg-ink py-24 md:py-32">
+    <section
+      id="join"
+      className="relative overflow-hidden border-t border-border/70 bg-ink py-24 md:py-32"
+    >
       <div className="grid-bg pointer-events-none absolute inset-0 opacity-10" />
-      <div className="relative mx-auto w-full max-w-4xl px-5 text-center md:px-8">
+      <div className="reveal-scale relative mx-auto w-full max-w-7xl px-6 text-center md:px-12 2xl:max-w-[1536px] 2xl:px-20">
         <p className="eyebrow text-ink-foreground/60">
           <span className="text-brand">09</span>
           <span className="mx-2">//</span>

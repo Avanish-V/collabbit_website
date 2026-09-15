@@ -21,35 +21,37 @@ export function Section({
   center?: boolean;
 }) {
   return (
-    <section id={id} className={cn("border-t border-border/70 py-20 md:py-28", className)}>
-      <div className="mx-auto w-full max-w-6xl px-5 md:px-8">
-        {(index || label) && (
-          <p className={cn("eyebrow text-muted-foreground", center && "text-center")}>
-            {index && <span className="text-brand">{index}</span>}
-            {index && label && <span className="mx-2 text-border">//</span>}
-            {label}
-          </p>
-        )}
-        {title && (
-          <h2
-            className={cn(
-              "mt-4 max-w-3xl text-3xl font-extrabold leading-[1.08] text-foreground md:text-5xl",
-              center && "mx-auto text-center",
-            )}
-          >
-            {title}
-          </h2>
-        )}
-        {intro && (
-          <p
-            className={cn(
-              "mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg",
-              center && "mx-auto text-center",
-            )}
-          >
-            {intro}
-          </p>
-        )}
+    <section id={id} className={cn("border-t border-border/70 py-20 md:py-28 lg:py-32", className)}>
+      <div className="mx-auto w-full max-w-7xl px-6 md:px-12 2xl:max-w-[1536px] 2xl:px-20">
+        <div className="reveal">
+          {(index || label) && (
+            <p className={cn("eyebrow text-muted-foreground", center && "text-center")}>
+              {index && <span className="text-brand">{index}</span>}
+              {index && label && <span className="mx-2 text-border">//</span>}
+              {label}
+            </p>
+          )}
+          {title && (
+            <h2
+              className={cn(
+                "mt-4 max-w-3xl text-3xl font-extrabold leading-[1.08] text-foreground md:text-5xl lg:text-6xl",
+                center && "mx-auto text-center",
+              )}
+            >
+              {title}
+            </h2>
+          )}
+          {intro && (
+            <p
+              className={cn(
+                "mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg",
+                center && "mx-auto text-center",
+              )}
+            >
+              {intro}
+            </p>
+          )}
+        </div>
         {children}
       </div>
     </section>

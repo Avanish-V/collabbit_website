@@ -1,13 +1,4 @@
-import {
-  Boxes,
-  Brain,
-  Code2,
-  GitFork,
-  Palette,
-  Rocket,
-  Smartphone,
-  Trophy,
-} from "lucide-react";
+import { Boxes, Brain, Code2, GitFork, Palette, Rocket, Smartphone, Trophy } from "lucide-react";
 import { Section } from "./shared";
 
 const guilds = [

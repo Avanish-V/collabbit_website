@@ -34,20 +34,20 @@ export function Gap() {
         {cards.map((c, i) => (
           <div
             key={c.title}
-            className="group relative rounded-3xl border border-border bg-card p-7 shadow-card transition-transform hover:-translate-y-1"
+            className={`reveal delay-${(i + 1) * 100} group relative rounded-3xl border border-border bg-card p-7 shadow-card transition-all hover:-translate-y-1.5`}
           >
-            <span className={`inline-flex h-12 w-12 items-center justify-center rounded-2xl ${c.tone}`}>
+            <span
+              className={`inline-flex h-12 w-12 items-center justify-center rounded-2xl ${c.tone}`}
+            >
               <c.icon className="h-5 w-5" />
             </span>
             <h3 className="mt-6 text-xl font-bold text-foreground">{c.title}</h3>
             <p className="mt-3 text-base leading-relaxed text-muted-foreground">“{c.quote}”</p>
-            <span className="absolute right-6 top-6 font-mono text-xs text-border">
-              0{i + 1}
-            </span>
+            <span className="absolute right-6 top-6 font-mono text-xs text-border">0{i + 1}</span>
           </div>
         ))}
       </div>
-      <p className="mt-10 text-center text-lg font-semibold text-foreground">
+      <p className="reveal delay-400 mt-10 text-center text-lg font-semibold text-foreground">
         Collabbit connects all three.
       </p>
     </Section>
