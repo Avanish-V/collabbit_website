@@ -3,7 +3,7 @@
     { "source": "/society/(.*)", "destination": "https://play.google.com/store/apps/details?id=com.iota.campusX", "permanent": false },
     { "source": "/chat/(.*)", "destination": "https://play.google.com/store/apps/details?id=com.iota.campusX", "permanent": false },
     { "source": "/post/(.*)", "destination": "https://play.google.com/store/apps/details?id=com.iota.campusX", "permanent": false },
-    { "source": "/opportunity/(.*)", "destination": "https://play.google.com/store/apps/details?id=com.iota.campusX", "permanent": false },
+    { "source": "/course/(.*)", "destination": "https://play.google.com/store/apps/details?id=com.iota.campusX", "permanent": false },
     { "source": "/collab/(.*)", "destination": "https://play.google.com/store/apps/details?id=com.iota.campusX", "permanent": false }
   ]
 }
